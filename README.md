@@ -29,31 +29,31 @@ It features a stunning gradient UI, dynamic album colors, responsive mobile/desk
 
 ### 🎼 Desktop Layout
 
-(Add your screenshot here)
 
-```
+
+
 <img width="1114" height="767" alt="image" src="https://github.com/user-attachments/assets/dd238d36-99a0-4b17-83b0-95a2d83f8a4e" />
 )
-```
+
 
 ### 📱 Mobile UI
 
 
 
-```<img width="671" height="427" alt="image" src="https://github.com/user-attachments/assets/7e4916b0-a36b-4a03-a321-38c88bd3d7c8" />
+<img width="671" height="427" alt="image" src="https://github.com/user-attachments/assets/7e4916b0-a36b-4a03-a321-38c88bd3d7c8" />
 
 ![<img width="398" height="766" alt="image" src="https://github.com/user-attachments/assets/e377ca13-cb71-4d4d-98c4-803e20c628d0" />
 )
-```
+
 
 ### 🎧 Mini Player
 
 
 
-```
+
 <img width="997" height="515" alt="image" src="https://github.com/user-attachments/assets/bb2b5ad3-be89-4394-b479-705c63df8956" />
 
-```
+
 
 ---
 
