@@ -6,6 +6,7 @@ import SlideOutMenu from "../components/layout/Sidebar";
 import FeaturedPlaylists from "../components/home/FeaturedPlaylists";
 import { useDominantColor } from "../hooks/useDominantColor";
 import { useAudioPlayer } from "../context/AudioPlayerContext";
+import SiteFooter from "../components/layout/SiteFooter";
 
 const PlayerPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -138,7 +139,8 @@ const PlayerPage = () => {
             </div>
           </SlideOutMenu>
         </div>
-
+  {/* Site footer (Songdew-style) */}
+        <SiteFooter />
         {/* Sticky bottom mini-player */}
         <footer className="border-t border-white/10 bg-black/70 backdrop-blur-xl">
           <div className="max-w-6xl mx-auto px-3 lg:px-6">
