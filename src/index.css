@@ -1,0 +1,457 @@
+@import "tailwindcss";
+/* GENERAL RESET / BASE -------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #f7f3ff;
+  background: #05010a;
+}
+
+button {
+  font: inherit;
+}
+
+/* APP SHELL ------------------------------------------------------------- */
+
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background: radial-gradient(circle at top, #3f1a6a, #05010a 70%);
+}
+
+.app-overlay {
+  flex: 1;
+  max-width: 1200px;
+  margin: 16px;
+  border-radius: 24px;
+  background: rgba(6, 2, 15, 0.92);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* DESKTOP LAYOUT -------------------------------------------------------- */
+
+.layout {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  flex: 1;
+}
+
+/* SIDEBAR --------------------------------------------------------------- */
+
+.sidebar-desktop {
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar {
+  height: 100%;
+  padding: 16px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Search bar */
+.sidebar-search input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.03);
+  color: #f7f3ff;
+  outline: none;
+  font-size: 14px;
+}
+
+.sidebar-search input::placeholder {
+  color: rgba(247, 243, 255, 0.55);
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 6px;
+  padding-top: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 8px;
+}
+
+.tab {
+  flex: 1;
+  border-radius: 999px;
+  padding: 6px 10px;
+  border: none;
+  background: transparent;
+  color: rgba(247, 243, 255, 0.7);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.tab--active {
+  background: rgba(156, 113, 255, 0.3);
+  color: #ffffff;
+}
+
+/* Track list ------------------------------------------------------------ */
+
+.track-list {
+  margin-top: 4px;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.track-item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 12px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.track-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-1px);
+}
+
+.track-item--active {
+  background: linear-gradient(120deg, rgba(154, 111, 255, 0.65), rgba(238, 90, 173, 0.65));
+}
+
+.track-thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.track-meta {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.track-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.track-title {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-playing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #34d399;
+}
+
+.track-artist {
+  font-size: 12px;
+  color: rgba(247, 243, 255, 0.7);
+}
+
+.track-fav {
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: rgba(247, 243, 255, 0.6);
+}
+
+.track-fav--active {
+  color: #fb7185;
+}
+
+/* Empty states ---------------------------------------------------------- */
+
+.empty-state {
+  flex: 1;
+  text-align: center;
+  padding: 40px 12px;
+  color: rgba(247, 243, 255, 0.7);
+}
+
+.empty-state h3 {
+  margin-bottom: 4px;
+}
+
+/* PLAYER (MAIN AREA) ---------------------------------------------------- */
+
+.main-content {
+  padding: 24px 28px 16px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.player {
+  display: grid;
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  width: 100%;
+}
+
+.player-left {
+  display: flex;
+  justify-content: center;
+}
+
+.player-cover {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  object-fit: cover;
+}
+
+.player-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.player-header h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.player-header p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: rgba(247, 243, 255, 0.7);
+}
+
+/* Wave visualizer */
+.wave {
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+  height: 24px;
+}
+
+.wave span {
+  width: 3px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(247, 243, 255, 0.6);
+  transform-origin: bottom;
+  animation: wave 1s infinite ease-in-out;
+  animation-play-state: paused;
+}
+
+.wave--active span {
+  animation-play-state: running;
+}
+
+.wave span:nth-child(2) { animation-delay: 0.15s; }
+.wave span:nth-child(3) { animation-delay: 0.3s; }
+.wave span:nth-child(4) { animation-delay: 0.45s; }
+
+@keyframes wave {
+  0%, 100% { height: 6px; }
+  50%      { height: 24px; }
+}
+
+/* Seek bar + timing */
+.seek-bar {
+  width: 100%;
+}
+
+.player-timing {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: rgba(247, 243, 255, 0.7);
+}
+
+/* Controls */
+.player-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.player-controls button {
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f7f3ff;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+
+.player-controls button:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* MINI PLAYER (bottom, mobile & optional desktop) ---------------------- */
+
+.mini-player {
+  display: none; /* visible on mobile */
+  align-items: center;
+  padding: 8px 12px;
+  gap: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(6, 2, 15, 0.96);
+}
+
+.mini-menu {
+  border: none;
+  background: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #f7f3ff;
+}
+
+.mini-thumb {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.mini-meta {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mini-title {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mini-artist {
+  font-size: 11px;
+  color: rgba(247, 243, 255, 0.7);
+}
+
+.mini-play {
+  border-radius: 999px;
+  border: none;
+  padding: 6px 10px;
+  background: rgba(156, 113, 255, 0.9);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* SLIDE-OUT MENU (MOBILE SIDEBAR) -------------------------------------- */
+
+.slideout-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 80%;
+  max-width: 320px;
+  background: #070311;
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+  z-index: 40;
+}
+
+.slideout-panel.open {
+  transform: translateX(0);
+}
+
+.slideout-backdrop {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  pointer-events: none;
+  transition: background 0.25s ease;
+  z-index: 30;
+}
+
+.slideout-backdrop.open {
+  background: rgba(0, 0, 0, 0.4);
+  pointer-events: auto;
+}
+
+/* ERROR FALLBACK -------------------------------------------------------- */
+
+.error-fallback {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #f7f3ff;
+}
+
+/* RESPONSIVE ------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sidebar-desktop {
+    display: none;
+  }
+
+  .main-content {
+    padding: 16px;
+  }
+
+  .player {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .player-left {
+    order: 1;
+  }
+
+  .player-right {
+    order: 2;
+  }
+
+  .mini-player {
+    display: flex;
+  }
+}
+
+@media (min-width: 769px) {
+  .slideout-panel,
+  .slideout-backdrop {
+    display: none;
+  }
+}
